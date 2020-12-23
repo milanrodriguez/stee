@@ -11,24 +11,30 @@ import (
 
 func handleSimpleAdd(core *stee.Core) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		key := ps.ByName("key")
 		targetBytes, err := base64.URLEncoding.DecodeString(ps.ByName("base64target"))
 		if err != nil {
+			// If URLEncoding doesn't, we use RawURLEncoding (omits padding characters)
 			targetBytes, err = base64.RawURLEncoding.DecodeString(ps.ByName("base64target"))
 		}
 		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
+			w.WriteHeader(http.StatusBadRequest)
 			fmt.Fprintf(w, "Error: %s", err.Error())
 			return
 		}
 		target := string(targetBytes)
-		err = core.AddRedirection(key, target)
+
+		key := ps.ByName("key")
+		if key != "" {
+			err = core.AddRedirectionWithKey(key, target)
+		} else {
+			key, err = core.AddRedirectionWithoutKey(target)
+		}
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			fmt.Fprintf(w, "Error: %s", err.Error())
 			return
 		}
-		fmt.Fprintf(w, "Added redirection: %s -> %s", key, target)
+		fmt.Fprintf(w, "✔️ Added redirection: '%s' -> %s", key, target)
 	}
 }
 

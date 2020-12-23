@@ -66,7 +66,7 @@ func serverRun(cmd *cobra.Command, args []string) {
 	if err != nil {
 		panic(fmt.Errorf("cannot initialize Stee: %v", err))
 	}
-	_ = core.AddRedirection("_stee", "https://github.com/milanrodriguez/stee")
+	_ = core.AddRedirectionWithKey("_stee", "https://github.com/milanrodriguez/stee")
 
 	httpHandler := steehttp.HandleRoot(core,
 		steehttp.EnableAPI(config.API.Enable, config.API.URLPathPrefix),

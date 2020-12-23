@@ -83,7 +83,7 @@ func (store *file) ReadRedirection(key string) (string, error) {
 	})
 	var err error
 	if result == nil {
-		err = fmt.Errorf("could not read value of key \"%s\"", key)
+		err = ErrRedirectionNotfound
 	}
 	return string(result), err
 }

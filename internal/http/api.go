@@ -28,8 +28,8 @@ func handleAPI(core *stee.Core, prefix string, simpleAPIEnabled bool) http.Handl
 
 	// Simple API routes
 	if simpleAPIEnabled {
-		router.GET(prefix+"/simple/add/:key", handleSimpleAdd(core))
-		router.GET(prefix+"/simple/add/:key/:base64target", handleSimpleAdd(core))
+		router.GET(prefix+"/simple/add/:base64target", handleSimpleAdd(core))
+		router.GET(prefix+"/simple/add/:base64target/:key", handleSimpleAdd(core))
 		router.GET(prefix+"/simple/get/:key", handleSimpleGet(core))
 		router.GET(prefix+"/simple/del/:key", handleSimpleDel(core))
 	}

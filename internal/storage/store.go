@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/spf13/viper"
@@ -25,6 +26,10 @@ type Store interface {
 type StoreFactory func(v *viper.Viper) (Store, error)
 
 var availableStores map[string]StoreFactory = make(map[string]StoreFactory)
+
+var (
+	ErrRedirectionNotfound error = errors.New("redirection not found")
+)
 
 // Register will register a new store type with its associated factory function.
 func Register(name string, factory StoreFactory) error {
