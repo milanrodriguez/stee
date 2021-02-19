@@ -2,7 +2,6 @@ package stee
 
 import (
 	"errors"
-	"fmt"
 	"math/rand"
 
 	"github.com/milanrodriguez/stee/internal/storage"
@@ -76,7 +75,6 @@ func generateRedirectionKey() string {
 
 func (c *Core) keyExists(key string) (exists bool, err error) {
 	target, err := c.store.ReadRedirection(key)
-	fmt.Print(err)
 	if err != nil && !errors.Is(err, storage.ErrRedirectionNotfound) {
 		return false, err
 	}
