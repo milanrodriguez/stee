@@ -4,21 +4,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/julienschmidt/httprouter"
+	"github.com/labstack/echo/v4"
 	"github.com/milanrodriguez/stee/internal/stee"
 )
 
-type uiHandler struct {
-	enable bool
-	prefix string
-	http.Handler
-}
-
-func handleUI(core *stee.Core, prefix string) http.Handler {
-	router := httprouter.New()
-	router.GET(prefix+"/*ui", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		w.WriteHeader(http.StatusNotImplemented)
-		fmt.Fprintf(w, "Error 501: UI not implemented in this version. Try to upgrade Stee.\n\nSee https://github.com/milanrodriguez/stee")
-	})
-	return router
+func handleUI(core *stee.Core) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		c.Response().WriteHeader(http.StatusNotImplemented)
+		_, err := fmt.Fprintf(c.Response().Writer, "Error 501: UI enabled but not implemented in this version. Try to upgrade Stee.\n\nSee https://github.com/milanrodriguez/stee")
+		return err
+	}
 }

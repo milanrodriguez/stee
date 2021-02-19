@@ -21,9 +21,19 @@ github.com/inconshreveable/mousetrap
 github.com/julienschmidt/httprouter
 # github.com/kr/text v0.2.0
 ## explicit
+# github.com/labstack/echo/v4 v4.1.17
+## explicit
+github.com/labstack/echo/v4
+# github.com/labstack/gommon v0.3.0
+github.com/labstack/gommon/color
+github.com/labstack/gommon/log
 # github.com/magiconair/properties v1.8.4
 ## explicit
 github.com/magiconair/properties
+# github.com/mattn/go-colorable v0.1.7
+github.com/mattn/go-colorable
+# github.com/mattn/go-isatty v0.0.12
+github.com/mattn/go-isatty
 # github.com/mitchellh/mapstructure v1.4.0
 ## explicit
 github.com/mitchellh/mapstructure
@@ -54,16 +64,31 @@ github.com/spf13/viper
 ## explicit
 # github.com/subosito/gotenv v1.2.0
 github.com/subosito/gotenv
+# github.com/valyala/bytebufferpool v1.0.0
+github.com/valyala/bytebufferpool
+# github.com/valyala/fasttemplate v1.2.1
+github.com/valyala/fasttemplate
 # go.etcd.io/bbolt v1.3.5
 ## explicit
 go.etcd.io/bbolt
+# golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
+golang.org/x/crypto/acme
+golang.org/x/crypto/acme/autocert
+# golang.org/x/net v0.0.0-20200822124328-c89045814202
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2
+golang.org/x/net/http2/h2c
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
 # golang.org/x/sys v0.0.0-20201211090839-8ad439b19e0f
 ## explicit
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 # golang.org/x/text v0.3.4
 ## explicit
+golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 # gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
 ## explicit
