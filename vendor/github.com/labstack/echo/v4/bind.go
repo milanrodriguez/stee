@@ -134,17 +134,30 @@ func (b *DefaultBinder) bindData(destination interface{}, data map[string][]stri
 
 	// !struct
 	if typ.Kind() != reflect.Struct {
+		if tag == "param" || tag == "query" {
+			// incompatible type, data is probably to be found in the body
+			return nil
+		}
 		return errors.New("binding element must be a struct")
 	}
 
 	for i := 0; i < typ.NumField(); i++ {
 		typeField := typ.Field(i)
 		structField := val.Field(i)
+		if typeField.Anonymous {
+			if structField.Kind() == reflect.Ptr {
+				structField = structField.Elem()
+			}
+		}
 		if !structField.CanSet() {
 			continue
 		}
 		structFieldKind := structField.Kind()
 		inputFieldName := typeField.Tag.Get(tag)
+		if typeField.Anonymous && structField.Kind() == reflect.Struct && inputFieldName != "" {
+			// if anonymous struct with query/param/form tags, report an error
+			return errors.New("query/param/form tags are not allowed with anonymous struct field")
+		}
 
 		if inputFieldName == "" {
 			// If tag is nil, we inspect if the field is a not BindUnmarshaler struct and try to bind data into it (might contains fields with tags).
