@@ -65,7 +65,7 @@ github.com/subosito/gotenv
 github.com/valyala/bytebufferpool
 # github.com/valyala/fasttemplate v1.2.1
 github.com/valyala/fasttemplate
-# go.etcd.io/bbolt v1.3.5
+# go.etcd.io/bbolt v1.3.6
 ## explicit
 go.etcd.io/bbolt
 # golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
